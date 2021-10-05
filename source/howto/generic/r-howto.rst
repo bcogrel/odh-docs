@@ -69,21 +69,20 @@ In order to fetch data, you need:
 1. An endpoint, which for |odh| is https://sparql.opendatahub.bz.it/sparql
 
 2. a SPARQL query, that you can simply copy from one of the precooked
-   queries at https://sparql.opendatahub.bz.it/ We'll be using this
+   queries at https://sparql.opendatahub.bz.it/portal/. We'll be using this
    one:
 
    .. code:: sparql
 
-      PREFIX schema: <https://schema.org/>
-      PREFIX geo: <http://schemas.opengis.net/geosparql/1.0/geosparql_vocab_all.rdf#>
-      PREFIX noi: <https://noi.example.org/ontology/odh#>
+      PREFIX schema: <http://schema.org/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX noi: <http://noi.example.org/ontology/odh#>
 
       SELECT ?pos ?posLabel
       WHERE {
         ?p a noi:Pizzeria ;
-           geo:asWKT ?pos ;
-           schema:name ?posLabel ;
-           schema:geo ?geo .
+           geo:defaultGeometry/geo:asWKT ?pos ;
+           schema:name ?posLabel .
         FILTER (lang(?posLabel) = "it")
       }
       LIMIT 10
@@ -99,16 +98,15 @@ In order to fetch data, you need:
       endpoint <- "https://sparql.opendatahub.bz.it/sparql"
 
       query <- 
-      'PREFIX schema: <https://schema.org/>
-      PREFIX geo: <http://schemas.opengis.net/geosparql/1.0/geosparql_vocab_all.rdf#>
-      PREFIX noi: <https://noi.example.org/ontology/odh#>
+      'PREFIX schema: <http://schema.org/>
+      PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+      PREFIX noi: <http://noi.example.org/ontology/odh#>
 
       SELECT ?pos ?posLabel
       WHERE {
         ?p a noi:Pizzeria ;
-           geo:asWKT ?pos ;
-           schema:name ?posLabel ;
-           schema:geo ?geo .
+           geo:defaultGeometry/geo:asWKT ?pos ;
+           schema:name ?posLabel .
         FILTER (lang(?posLabel) = "it")
       }
       LIMIT 10'
@@ -125,16 +123,16 @@ will be similar to::
    Loading required package: RCurl
    $results
                                                                                    pos
-   1  "POINT (11.440394 46.511651)"^^<http://schemas.opengis.net/geosparql/1.0/geosparql_vocab_all.rdf#wktLiteral>
-   2  "POINT (11.200728 46.729921)"^^<http://schemas.opengis.net/geosparql/1.0/geosparql_vocab_all.rdf#wktLiteral>
-   3      "POINT (11.9412 46.9803)"^^<http://schemas.opengis.net/geosparql/1.0/geosparql_vocab_all.rdf#wktLiteral>
-   4      "POINT (11.4278 46.4135)"^^<http://schemas.opengis.net/geosparql/1.0/geosparql_vocab_all.rdf#wktLiteral>
-   5  "POINT (11.326362 46.310963)"^^<http://schemas.opengis.net/geosparql/1.0/geosparql_vocab_all.rdf#wktLiteral>
-   6  "POINT (12.279453 46.733497)"^^<http://schemas.opengis.net/geosparql/1.0/geosparql_vocab_all.rdf#wktLiteral>
-   7  "POINT (10.867335 46.622179)"^^<http://schemas.opengis.net/geosparql/1.0/geosparql_vocab_all.rdf#wktLiteral>
-   8  "POINT (11.241217 46.246141)"^^<http://schemas.opengis.net/geosparql/1.0/geosparql_vocab_all.rdf#wktLiteral>
-   9   "POINT (11.598339 46.40688)"^^<http://schemas.opengis.net/geosparql/1.0/geosparql_vocab_all.rdf#wktLiteral>
-   10     "POINT (12.0114 46.7474)"^^<http://schemas.opengis.net/geosparql/1.0/geosparql_vocab_all.rdf#wktLiteral>
+   1  "POINT (11.440394 46.511651)"^^<http://www.opengis.net/ont/geosparql#wktLiteral>
+   2  "POINT (11.200728 46.729921)"^^<http://www.opengis.net/ont/geosparql#wktLiteral>
+   3      "POINT (11.9412 46.9803)"^^<http://www.opengis.net/ont/geosparql#wktLiteral>
+   4      "POINT (11.4278 46.4135)"^^<http://www.opengis.net/ont/geosparql#wktLiteral>
+   5  "POINT (11.326362 46.310963)"^^<http://www.opengis.net/ont/geosparql#wktLiteral>
+   6  "POINT (12.279453 46.733497)"^^<http://www.opengis.net/ont/geosparql#wktLiteral>
+   7  "POINT (10.867335 46.622179)"^^<http://www.opengis.net/ont/geosparql#wktLiteral>
+   8  "POINT (11.241217 46.246141)"^^<http://www.opengis.net/ont/geosparql#wktLiteral>
+   9   "POINT (11.598339 46.40688)"^^<http://www.opengis.net/ont/geosparql#wktLiteral>
+   10     "POINT (12.0114 46.7474)"^^<http://www.opengis.net/ont/geosparql#wktLiteral>
                                             posLabel
    1           "Ristorante Pizzeria Bar Pirpamer"@it
    2                      "Bar Pizzeria Alpenhof"@it
